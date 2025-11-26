@@ -4,10 +4,10 @@ import { Button, Tooltip } from '@heroui/react';
 import {
   PanelLeftClose,
   PanelLeftOpen,
-  ChartColumnStacked,
-  ClipboardList,
-  FlaskConical,
-  UserRound,
+  Home,
+  File,
+  Activity,
+  Users,
   Settings,
 } from 'lucide-react';
 import { usePathname, useRouter } from '@/src/i18n/routing';
@@ -68,22 +68,22 @@ export default function Sidebar({ messages, locale }: Props) {
     {
       key: 'home',
       text: messages.home,
-      startContent: <ChartColumnStacked strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
+      startContent: <Home strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
     },
     {
       key: 'cases',
       text: messages.testCases,
-      startContent: <ClipboardList strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
+      startContent: <File strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
     },
     {
       key: 'runs',
       text: messages.testRuns,
-      startContent: <FlaskConical strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
+      startContent: <Activity strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
     },
     {
       key: 'members',
       text: messages.members,
-      startContent: <UserRound strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
+      startContent: <Users strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
     },
     {
       key: 'settings',

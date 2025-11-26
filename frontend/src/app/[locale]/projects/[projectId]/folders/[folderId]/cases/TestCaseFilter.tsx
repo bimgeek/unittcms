@@ -9,7 +9,7 @@ import {
   Input,
   addToast,
 } from '@heroui/react';
-import { SearchIcon, ChevronDown, Circle } from 'lucide-react';
+import { Search, ChevronDown, Circle } from 'lucide-react';
 import { PriorityMessages } from '@/types/priority';
 import { TestTypeMessages } from '@/types/testType';
 import { CasesMessages } from '@/types/case';
@@ -146,7 +146,7 @@ export default function TestCaseFilter({
             input: 'text-small',
           }}
           size="sm"
-          startContent={<SearchIcon size={18} />}
+          startContent={<Search size={18} />}
           type="search"
           value={search}
           onValueChange={setSearch}

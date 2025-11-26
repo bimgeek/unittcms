@@ -50,7 +50,7 @@ export default function RootLayout({
           themeProps={{ attribute: 'class', defaultTheme: 'light' }}
           tokenProps={{ toastMessages: toastMessages, locale: locale }}
         >
-          <div className="relative flex flex-col min-h-screen light:bg-neutral-50 dark:bg-neutral-800">
+          <div className="relative flex flex-col min-h-screen light:bg-neutral-50 dark:bg-app-bg-primary">
             <Header locale={locale} />
             <main>{children}</main>
           </div>

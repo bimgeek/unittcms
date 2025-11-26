@@ -137,7 +137,7 @@ export function ProjectHome({
       </div>
 
       {project.detail && (
-        <Card className="mt-3 bg-neutral-100 dark:bg-neutral-700 dark:text-white" shadow="none">
+        <Card className="mt-3 bg-neutral-100 dark:bg-app-bg-secondary dark:text-app-text-primary" shadow="none">
           <CardBody>{project.detail}</CardBody>
         </Card>
       )}

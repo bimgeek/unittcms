@@ -279,7 +279,7 @@ export default function TestCaseTable({
 
   return (
     <>
-      <div className="border-b-1 dark:border-neutral-700 w-full ">
+      <div className="border-b-1 dark:border-app-border-primary w-full ">
         <div className="flex items-center justify-between p-3 ">
           <h3 className="font-bold">{messages.testCaseList}</h3>
           <div className="flex items-center">
@@ -432,7 +432,7 @@ export default function TestCaseTable({
       </div>
 
       {sortedItems.length === 0 && (
-        <div className="flex justify-center items-center w-full h-48 text-neutral-500">
+        <div className="flex justify-center items-center w-full h-48 text-neutral-500 dark:text-app-text-tertiary">
           <div>No test case</div>
         </div>
       )}

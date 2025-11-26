@@ -202,13 +202,13 @@ export default function RunEditor({
 
   return (
     <>
-      <div className="border-b-1 dark:border-neutral-700 w-full p-3 flex items-center justify-between">
+      <div className="border-b-1 dark:border-app-border-primary w-full p-3 flex items-center justify-between">
         <div className="flex items-center">
           <Tooltip content={messages.backToRuns}>
             <Button
               isIconOnly
               size="sm"
-              className="rounded-full bg-neutral-50 dark:bg-neutral-600"
+              className="rounded-full bg-neutral-50 dark:bg-app-bg-tertiary"
               onPress={() => router.push(`/projects/${projectId}/runs`, { locale: locale })}
             >
               <ArrowLeft size={16} />
@@ -381,8 +381,8 @@ export default function RunEditor({
           </div>
         </div>
 
-        <div className="mt-3 flex rounded-small border-2 dark:border-neutral-700 mb-12">
-          <div className="w-3/12 border-r-1 dark:border-neutral-700">
+        <div className="mt-3 flex rounded-small border-2 dark:border-app-border-primary mb-12">
+          <div className="w-3/12 border-r-1 dark:border-app-border-primary">
             <Tree
               data={treeData}
               className="w-full"

@@ -93,7 +93,7 @@ export default function Sidebar({ messages, locale }: Props) {
   ];
 
   return (
-    <div className="border-r-1 dark:border-neutral-700">
+    <div className="border-r-1 dark:border-app-border-primary">
       <div className="w-full flex justify-end">
         <Tooltip content={messages.toggleSidebar} placement="right">
           <Button size="lg" isIconOnly variant="light" onPress={() => setIsSideBarOpen(!isSideBarOpen)}>
@@ -106,7 +106,7 @@ export default function Sidebar({ messages, locale }: Props) {
         </Tooltip>
       </div>
 
-      <div className="border-t-1 dark:border-neutral-700">
+      <div className="border-t-1 dark:border-app-border-primary">
         {tabItems.map((itr) => (
           <div key={itr.key}>
             <Tooltip hidden={isSideBarOpen} content={itr.text} placement="right">

@@ -236,13 +236,13 @@ export default function CaseEditor({
 
   return (
     <>
-      <div className="border-b-1 dark:border-neutral-700 w-full p-3 flex items-center justify-between">
+      <div className="border-b-1 dark:border-app-border-primary w-full p-3 flex items-center justify-between">
         <div className="flex items-center">
           <Tooltip content={messages.backToCases} placement="left">
             <Button
               isIconOnly
               size="sm"
-              className="rounded-full bg-neutral-50 dark:bg-neutral-600"
+              className="rounded-full bg-neutral-50 dark:bg-app-bg-tertiary"
               onPress={() => router.push(`/projects/${projectId}/folders/${folderId}/cases`, { locale: locale })}
             >
               <ArrowLeft size={16} />

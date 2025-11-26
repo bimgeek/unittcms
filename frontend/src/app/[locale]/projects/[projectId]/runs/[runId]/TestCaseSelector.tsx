@@ -101,7 +101,7 @@ export default function TestCaseSelector({
     });
   }, [sortDescriptor, cases]);
 
-  const notIncludedCaseClass = 'text-neutral-200 dark:text-neutral-600';
+  const notIncludedCaseClass = 'text-neutral-200 dark:text-app-text-tertiary';
 
   const renderStatusIcon = (uid: string) => {
     if (uid === 'untested') {

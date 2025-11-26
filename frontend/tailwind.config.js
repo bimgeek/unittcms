@@ -1,4 +1,5 @@
 const { heroui } = require('@heroui/react');
+const colors = require('tailwindcss/colors');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -19,19 +20,19 @@ module.exports = {
         light: {
           colors: {
             primary: {
-              DEFAULT: '#030712',
+              DEFAULT: colors.blue[600],
               foreground: '#FFFFFF',
             },
-            focus: '#030712',
+            focus: colors.blue[600],
           },
         },
         dark: {
           colors: {
             primary: {
-              DEFAULT: '#1F883D',
+              DEFAULT: colors.blue[600],
               foreground: '#FFFFFF',
             },
-            focus: '#1F883D',
+            focus: colors.blue[600],
           },
         },
       },

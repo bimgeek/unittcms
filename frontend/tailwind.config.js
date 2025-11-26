@@ -12,7 +12,30 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        // App backgrounds
+        'app-bg': {
+          primary: '#030712',    // gray-950 - main background
+          secondary: '#111827',  // gray-900 - cards, secondary surfaces
+          tertiary: '#1f2937',   // gray-800 - tertiary surfaces, hover states
+        },
+
+        // App borders
+        'app-border': {
+          primary: '#1f2937',    // gray-800 - main dividers
+          secondary: '#374151',  // gray-700 - secondary dividers
+        },
+
+        // App text
+        'app-text': {
+          primary: '#e5e7eb',    // gray-200 - headings, main content
+          secondary: '#9ca3af',  // gray-400 - supporting text, labels
+          tertiary: '#6b7280',   // gray-500 - hints, metadata
+          muted: '#4b5563',      // gray-600 - very subtle text
+        },
+      },
+    },
   },
   plugins: [
     heroui({

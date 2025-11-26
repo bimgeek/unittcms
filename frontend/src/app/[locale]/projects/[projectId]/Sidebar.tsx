@@ -8,7 +8,7 @@ import {
   File,
   Activity,
   Users,
-  Settings,
+  Settings2,
 } from 'lucide-react';
 import { usePathname, useRouter } from '@/src/i18n/routing';
 import useGetCurrentIds from '@/utils/useGetCurrentIds';
@@ -88,7 +88,7 @@ export default function Sidebar({ messages, locale }: Props) {
     {
       key: 'settings',
       text: messages.settings,
-      startContent: <Settings strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
+      startContent: <Settings2 strokeWidth={ICON_STROKE_WIDTH} size={ICON_SIZE} />,
     },
   ];
 

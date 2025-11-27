@@ -92,6 +92,9 @@ export type AccountDropDownMessages = {
   signUp: string;
   signIn: string;
   signOut: string;
+  lightMode: string;
+  darkMode: string;
+  github: string;
 };
 
 export type MemberType = {

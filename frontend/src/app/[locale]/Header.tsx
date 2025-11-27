@@ -16,6 +16,9 @@ export default function Header(params: { locale: LocaleCodeType }) {
     signOut: t('signout'),
     links: t('links'),
     languages: t('languages'),
+    lightMode: t('lightMode'),
+    darkMode: t('darkMode'),
+    github: t('github'),
   };
 
   return <HeaderNavbarMenu messages={messages} locale={params.locale} />;

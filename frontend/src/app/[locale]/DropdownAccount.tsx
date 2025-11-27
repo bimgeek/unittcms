@@ -1,7 +1,8 @@
 'use client';
 import { Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem } from '@heroui/react';
-import { ChevronDown, PenTool, ArrowRightFromLine, ArrowRightToLine, Settings } from 'lucide-react';
+import { ChevronDown, PenTool, ArrowRightFromLine, ArrowRightToLine, Settings, Sun, Moon, Github } from 'lucide-react';
 import { useContext } from 'react';
+import { useTheme } from 'next-themes';
 import { TokenContext } from '@/utils/TokenProvider';
 import { useRouter } from '@/src/i18n/routing';
 import { AccountDropDownMessages } from '@/types/user';
@@ -16,6 +17,7 @@ type Props = {
 export default function DropdownAccount({ messages, locale, onItemPress }: Props) {
   const router = useRouter();
   const context = useContext(TokenContext);
+  const { theme, setTheme } = useTheme();
 
   const signOut = () => {
     context.setToken({
@@ -25,6 +27,10 @@ export default function DropdownAccount({ messages, locale, onItemPress }: Props
     });
     context.removeTokenFromLocalStorage();
     router.push(`/account/signin`, { locale: locale });
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   const signinItems = [
@@ -45,6 +51,24 @@ export default function DropdownAccount({ messages, locale, onItemPress }: Props
       icon: <Settings size={16} />,
       onPress: () => {
         router.push('/account/settings', { locale: locale });
+        onItemPress();
+      },
+    },
+    {
+      uid: 'theme',
+      title: theme === 'light' ? messages.darkMode : messages.lightMode,
+      icon: theme === 'light' ? <Moon size={16} /> : <Sun size={16} />,
+      onPress: () => {
+        toggleTheme();
+        onItemPress();
+      },
+    },
+    {
+      uid: 'github',
+      title: messages.github,
+      icon: <Github size={16} />,
+      onPress: () => {
+        window.open('https://github.com/kimatata/unittcms', '_blank');
         onItemPress();
       },
     },
@@ -75,6 +99,24 @@ export default function DropdownAccount({ messages, locale, onItemPress }: Props
       icon: <PenTool size={16} />,
       onPress: () => {
         router.push('/account/signup', { locale: locale });
+        onItemPress();
+      },
+    },
+    {
+      uid: 'theme',
+      title: theme === 'light' ? messages.darkMode : messages.lightMode,
+      icon: theme === 'light' ? <Moon size={16} /> : <Sun size={16} />,
+      onPress: () => {
+        toggleTheme();
+        onItemPress();
+      },
+    },
+    {
+      uid: 'github',
+      title: messages.github,
+      icon: <Github size={16} />,
+      onPress: () => {
+        window.open('https://github.com/kimatata/unittcms', '_blank');
         onItemPress();
       },
     },

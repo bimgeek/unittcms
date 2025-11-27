@@ -13,10 +13,10 @@ import {
   ListboxItem,
   Listbox,
 } from '@heroui/react';
-import { ArrowRightFromLine, ArrowRightToLine, File, Github, Globe, MoveUpRight, PenTool, Settings } from 'lucide-react';
+import { ArrowRightFromLine, ArrowRightToLine, File, Github, Globe, MoveUpRight, PenTool, Settings, Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import DropdownAccount from './DropdownAccount';
 import DropdownLanguage from './DropdownLanguage';
-import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { locales } from '@/config/selection';
 import { Link, useRouter } from '@/src/i18n/routing';
 import { TokenContext } from '@/utils/TokenProvider';
@@ -37,6 +37,9 @@ type NabbarMenuMessages = {
   signOut: string;
   links: string;
   languages: string;
+  lightMode: string;
+  darkMode: string;
+  github: string;
 };
 
 type Props = {
@@ -49,6 +52,7 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
   const context = useContext(TokenContext);
   const pathname = usePathname();
   const { projectName } = useCurrentProject();
+  const { theme, setTheme } = useTheme();
 
   // Only show project name when inside a specific project, not on the projects list page
   const isInsideProject = pathname.match(/\/projects\/\d+/);
@@ -81,6 +85,11 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
   }
 
   const router = useRouter();
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
   async function changeLocale(nextLocale: string) {
     let newPathname;
     if (pathname.length < 4) {
@@ -143,10 +152,6 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
       </NavbarContent>
 
       <NavbarContent className="basis-1 pl-4" justify="end">
-        <NextUiLink isExternal href="https://github.com/kimatata/unittcms" aria-label="Github">
-          <Github className="text-default-500" />
-        </NextUiLink>
-        <ThemeSwitch />
         <div className="hidden md:block">
           <DropdownAccount messages={messages} locale={locale} onItemPress={() => {}} />
           <DropdownLanguage locale={locale} onChangeLocale={changeLocale} />
@@ -221,6 +226,24 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
                 }}
               />
               <ListboxItem
+                key="theme"
+                title={theme === 'light' ? messages.darkMode : messages.lightMode}
+                startContent={theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+                onPress={() => {
+                  toggleTheme();
+                  setIsMenuOpen(false);
+                }}
+              />
+              <ListboxItem
+                key="github"
+                title={messages.github}
+                startContent={<Github size={16} />}
+                onPress={() => {
+                  window.open('https://github.com/kimatata/unittcms', '_blank');
+                  setIsMenuOpen(false);
+                }}
+              />
+              <ListboxItem
                 key="signout"
                 title={messages.signOut}
                 startContent={<ArrowRightFromLine size={16} />}
@@ -258,6 +281,24 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
                 startContent={<PenTool size={16} />}
                 onPress={() => {
                   router.push('/account/signup', { locale: locale });
+                  setIsMenuOpen(false);
+                }}
+              />
+              <ListboxItem
+                key="theme"
+                title={theme === 'light' ? messages.darkMode : messages.lightMode}
+                startContent={theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
+                onPress={() => {
+                  toggleTheme();
+                  setIsMenuOpen(false);
+                }}
+              />
+              <ListboxItem
+                key="github"
+                title={messages.github}
+                startContent={<Github size={16} />}
+                onPress={() => {
+                  window.open('https://github.com/kimatata/unittcms', '_blank');
                   setIsMenuOpen(false);
                 }}
               />

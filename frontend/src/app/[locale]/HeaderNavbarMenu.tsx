@@ -1,5 +1,5 @@
 'use client';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -23,6 +23,8 @@ import { TokenContext } from '@/utils/TokenProvider';
 import UserAvatar from '@/components/UserAvatar';
 import { LocaleCodeType } from '@/types/locale';
 import Config from '@/config/config';
+import useGetCurrentIds from '@/utils/useGetCurrentIds';
+import { fetchProject } from '@/utils/projectsControl';
 
 type NabbarMenuMessages = {
   projects: string;
@@ -46,6 +48,28 @@ type Props = {
 export default function HeaderNavbarMenu({ messages, locale }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const context = useContext(TokenContext);
+  const { projectId } = useGetCurrentIds();
+  const [projectName, setProjectName] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Reset project name when not in a project
+    if (!projectId || !context.isSignedIn()) {
+      setProjectName(null);
+      return;
+    }
+
+    // Fetch project data
+    async function fetchProjectData() {
+      try {
+        const data = await fetchProject(context.token.access_token, projectId);
+        setProjectName(data?.name || null);
+      } catch (error) {
+        setProjectName(null); // Handle error gracefully
+      }
+    }
+
+    fetchProjectData();
+  }, [projectId, context]);
 
   const commonLinks = [
     {
@@ -105,13 +129,21 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
             </NavbarItem>
           ) : (
             <NavbarItem key={link.uid} className="hidden md:block">
-              <Link
-                className="data-[active=true]:text-primary data-[active=true]:font-medium"
-                href={link.href}
-                locale={locale}
-              >
-                {link.label}
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  className="data-[active=true]:text-primary data-[active=true]:font-medium"
+                  href={link.href}
+                  locale={locale}
+                >
+                  {link.label}
+                </Link>
+                {link.uid === 'projects' && projectName && (
+                  <>
+                    <span className="text-default-500">&gt;</span>
+                    <span className="text-default-700">{projectName}</span>
+                  </>
+                )}
+              </div>
             </NavbarItem>
           )
         )}

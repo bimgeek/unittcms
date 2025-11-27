@@ -153,7 +153,6 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
             </NavbarItem>
           )
         )}
-        {isInsideProject && <ProjectNavigation messages={projectMessages} locale={locale} />}
         {context.isAdmin() && (
           <NavbarItem key="admin" className="hidden md:block">
             <Link
@@ -166,6 +165,12 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
           </NavbarItem>
         )}
       </NavbarContent>
+
+      {isInsideProject && (
+        <NavbarContent className="hidden md:flex" justify="center">
+          <ProjectNavigation messages={projectMessages} locale={locale} />
+        </NavbarContent>
+      )}
 
       <NavbarContent className="basis-1 pl-4" justify="end">
         <div className="hidden md:block">

@@ -82,7 +82,10 @@
     "signin": "サインイン",
     "signout": "サインアウト",
     "links": "リンク",
-    "languages": "言語"
+    "languages": "言語",
+    "lightMode": "ライトモード",
+    "darkMode": "ダークモード",
+    "github": "GitHub"
   },
   "Toast": {
     "need_signed_in": "サインインが必要です",

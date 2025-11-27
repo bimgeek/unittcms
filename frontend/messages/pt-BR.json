@@ -82,7 +82,10 @@
     "signin": "Entrar",
     "signout": "Sair",
     "links": "Links",
-    "languages": "Idiomas"
+    "languages": "Idiomas",
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Escuro",
+    "github": "GitHub"
   },
   "Toast": {
     "need_signed_in": "Você precisa fazer login",

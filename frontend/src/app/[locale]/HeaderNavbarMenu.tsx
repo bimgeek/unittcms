@@ -13,10 +13,22 @@ import {
   ListboxItem,
   Listbox,
 } from '@heroui/react';
-import { ArrowRightFromLine, ArrowRightToLine, File, Github, Globe, MoveUpRight, PenTool, Settings, Sun, Moon } from 'lucide-react';
+import {
+  ArrowRightFromLine,
+  ArrowRightToLine,
+  File,
+  Github,
+  Globe,
+  MoveUpRight,
+  PenTool,
+  Settings,
+  Sun,
+  Moon,
+} from 'lucide-react';
 import { useTheme } from 'next-themes';
 import DropdownAccount from './DropdownAccount';
 import DropdownLanguage from './DropdownLanguage';
+import ProjectNavigation from './projects/[projectId]/ProjectNavigation';
 import { locales } from '@/config/selection';
 import { Link, useRouter } from '@/src/i18n/routing';
 import { TokenContext } from '@/utils/TokenProvider';
@@ -24,6 +36,7 @@ import { useCurrentProject } from '@/utils/CurrentProjectProvider';
 import UserAvatar from '@/components/UserAvatar';
 import { LocaleCodeType } from '@/types/locale';
 import Config from '@/config/config';
+import { ProjectMessages } from '@/types/project';
 
 type NabbarMenuMessages = {
   projects: string;
@@ -44,10 +57,11 @@ type NabbarMenuMessages = {
 
 type Props = {
   messages: NabbarMenuMessages;
+  projectMessages: ProjectMessages;
   locale: LocaleCodeType;
 };
 
-export default function HeaderNavbarMenu({ messages, locale }: Props) {
+export default function HeaderNavbarMenu({ messages, projectMessages, locale }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const context = useContext(TokenContext);
   const pathname = usePathname();
@@ -138,6 +152,7 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
             </NavbarItem>
           )
         )}
+        {isInsideProject && <ProjectNavigation messages={projectMessages} locale={locale} />}
         {context.isAdmin() && (
           <NavbarItem key="admin" className="hidden md:block">
             <Link
@@ -328,3 +343,4 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
     </Navbar>
   );
 }
+

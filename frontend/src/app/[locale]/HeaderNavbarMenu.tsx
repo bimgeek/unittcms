@@ -47,7 +47,12 @@ type Props = {
 export default function HeaderNavbarMenu({ messages, locale }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const context = useContext(TokenContext);
+  const pathname = usePathname();
   const { projectName } = useCurrentProject();
+
+  // Only show project name when inside a specific project, not on the projects list page
+  const isInsideProject = pathname.match(/\/projects\/\d+/);
+  const showProjectName = isInsideProject && projectName;
 
   const commonLinks = [
     {
@@ -76,7 +81,6 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
   }
 
   const router = useRouter();
-  const pathname = usePathname();
   async function changeLocale(nextLocale: string) {
     let newPathname;
     if (pathname.length < 4) {
@@ -115,7 +119,7 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
                 >
                   {link.label}
                 </Link>
-                {link.uid === 'projects' && projectName && (
+                {link.uid === 'projects' && showProjectName && (
                   <>
                     <span className="text-default-500">&gt;</span>
                     <span className="text-default-700">{projectName}</span>

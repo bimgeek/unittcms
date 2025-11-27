@@ -1,5 +1,5 @@
 'use client';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import {
@@ -20,11 +20,10 @@ import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { locales } from '@/config/selection';
 import { Link, useRouter } from '@/src/i18n/routing';
 import { TokenContext } from '@/utils/TokenProvider';
+import { useCurrentProject } from '@/utils/CurrentProjectProvider';
 import UserAvatar from '@/components/UserAvatar';
 import { LocaleCodeType } from '@/types/locale';
 import Config from '@/config/config';
-import useGetCurrentIds from '@/utils/useGetCurrentIds';
-import { fetchProject } from '@/utils/projectsControl';
 
 type NabbarMenuMessages = {
   projects: string;
@@ -48,28 +47,7 @@ type Props = {
 export default function HeaderNavbarMenu({ messages, locale }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const context = useContext(TokenContext);
-  const { projectId } = useGetCurrentIds();
-  const [projectName, setProjectName] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Reset project name when not in a project
-    if (!projectId || !context.isSignedIn()) {
-      setProjectName(null);
-      return;
-    }
-
-    // Fetch project data
-    async function fetchProjectData() {
-      try {
-        const data = await fetchProject(context.token.access_token, projectId);
-        setProjectName(data?.name || null);
-      } catch (error) {
-        setProjectName(null); // Handle error gracefully
-      }
-    }
-
-    fetchProjectData();
-  }, [projectId, context]);
+  const { projectName } = useCurrentProject();
 
   const commonLinks = [
     {

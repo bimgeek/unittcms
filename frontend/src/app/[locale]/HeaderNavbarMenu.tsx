@@ -37,6 +37,7 @@ import UserAvatar from '@/components/UserAvatar';
 import { LocaleCodeType } from '@/types/locale';
 import Config from '@/config/config';
 import { ProjectMessages } from '@/types/project';
+import { text } from '@/components/primitives';
 
 type NabbarMenuMessages = {
   projects: string;
@@ -122,13 +123,13 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <Link className="flex justify-start items-center gap-1" href="/" locale={locale}>
             <Image src="/favicon/icon-192.png" width={32} height={32} alt="Logo" />
-            <p className="font-bold text-inherit ms-1">UnitTCMS</p>
+            <p className={text({ size: 'sm', weight: 'bold' }) + ' text-inherit ms-1'}>UnitTCMS</p>
           </Link>
         </NavbarBrand>
         {commonLinks.map((link) =>
           link.isExternal ? (
             <NavbarItem key={link.uid} className="hidden md:block">
-              <NextUiLink isExternal href={link.href} showAnchorIcon>
+              <NextUiLink isExternal href={link.href} showAnchorIcon className={text({ size: 'sm' })}>
                 {link.label}
               </NextUiLink>
             </NavbarItem>
@@ -136,7 +137,7 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
             <NavbarItem key={link.uid} className="hidden md:block">
               <div className="flex items-center gap-2">
                 <Link
-                  className="data-[active=true]:text-primary data-[active=true]:font-medium"
+                  className={text({ size: 'sm' }) + ' data-[active=true]:text-primary data-[active=true]:font-medium'}
                   href={link.href}
                   locale={locale}
                 >
@@ -145,7 +146,7 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
                 {link.uid === 'projects' && showProjectName && (
                   <>
                     <span className="text-default-500">&gt;</span>
-                    <span className="text-default-700">{projectName}</span>
+                    <span className={text({ size: 'sm' }) + ' text-default-700'}>{projectName}</span>
                   </>
                 )}
               </div>
@@ -156,7 +157,7 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
         {context.isAdmin() && (
           <NavbarItem key="admin" className="hidden md:block">
             <Link
-              className="data-[active=true]:text-primary data-[active=true]:font-medium"
+              className={text({ size: 'sm' }) + ' data-[active=true]:text-primary data-[active=true]:font-medium'}
               href="/admin"
               locale={locale}
             >
@@ -176,11 +177,11 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
 
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          <p className="font-bold">{messages.links}</p>
+          <p className={text({ size: 'sm', weight: 'bold' })}>{messages.links}</p>
           <Listbox
             aria-label="Links"
             itemClasses={{
-              base: 'h-10 text-large',
+              base: 'h-10 ' + text({ size: 'sm' }),
             }}
           >
             {commonLinks.map((link) =>
@@ -208,12 +209,12 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
             )}
           </Listbox>
 
-          <p className="font-bold">{messages.account}</p>
+          <p className={text({ size: 'sm', weight: 'bold' })}>{messages.account}</p>
           {context.isSignedIn() ? (
             <Listbox
               aria-label="Account links"
               itemClasses={{
-                base: 'h-10 text-large',
+                base: 'h-10 ' + text({ size: 'sm' }),
               }}
             >
               <ListboxItem
@@ -278,7 +279,7 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
             <Listbox
               aria-label="Account links"
               itemClasses={{
-                base: 'h-10 text-large',
+                base: 'h-10 ' + text({ size: 'sm' }),
               }}
             >
               <ListboxItem
@@ -319,11 +320,11 @@ export default function HeaderNavbarMenu({ messages, projectMessages, locale }: 
               />
             </Listbox>
           )}
-          <p className="font-bold">{messages.languages}</p>
+          <p className={text({ size: 'sm', weight: 'bold' })}>{messages.languages}</p>
           <Listbox
             aria-label="Language links"
             itemClasses={{
-              base: 'h-10 text-large',
+              base: 'h-10 ' + text({ size: 'sm' }),
             }}
           >
             {locales.map((entry) => (

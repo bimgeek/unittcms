@@ -43,3 +43,26 @@ export const subtitle = tv({
     fullWidth: true,
   },
 });
+
+export const text = tv({
+  base: '',
+  variants: {
+    size: {
+      xs: 'text-xs',
+      sm: 'text-sm',
+      base: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+    weight: {
+      normal: 'font-normal',
+      medium: 'font-medium',
+      semibold: 'font-semibold',
+      bold: 'font-bold',
+    },
+  },
+  defaultVariants: {
+    size: 'sm',
+    weight: 'normal',
+  },
+});

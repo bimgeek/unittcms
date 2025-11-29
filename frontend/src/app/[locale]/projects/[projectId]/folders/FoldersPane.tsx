@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect, useContext } from 'react';
-import { Button } from '@heroui/react';
 import { Plus } from 'lucide-react';
 import { Tree } from 'react-arborist';
 import FolderDialog from './FolderDialog';
@@ -133,47 +132,49 @@ export default function FoldersPane({ projectId, messages, locale }: Props) {
   return (
     <>
       <div className="w-56 min-h-[calc(100vh-64px)] border-r-1 dark:border-app-border-primary">
-        <Button
-          startContent={<Plus size={16} />}
-          size="sm"
-          variant="bordered"
-          className="m-2 text-sm font-medium"
-          isDisabled={!context.isProjectDeveloper(Number(projectId))}
-          onPress={() => openDialogForCreate()}
-        >
-          {messages.newFolder}
-        </Button>
+        <div className="mx-1">
+          <button
+            className="w-full py-1 px-2 flex items-center gap-2 rounded-md cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-600 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={!context.isProjectDeveloper(Number(projectId))}
+            onClick={() => openDialogForCreate()}
+          >
+            <Plus size={16} />
+            {messages.newFolder}
+          </button>
+        </div>
 
         {treeData.length > 0 && (
-          <Tree
-            data={treeData}
-            className="w-full"
-            indent={16}
-            rowHeight={42}
-            overscanCount={5}
-            paddingTop={20}
-            paddingBottom={20}
-            padding={20}
-            width="100%"
-            openByDefault={false}
-            disableDrop={true}
-            disableDrag={true}
-          >
-            {(props) => (
-              <div onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, props.node.id)}>
-                <FolderItem
-                  {...props}
-                  projectId={projectId}
-                  selectedFolder={selectedFolder}
-                  locale={locale}
-                  messages={messages}
-                  openDialogForCreate={openDialogForCreate}
-                  onEditClick={onEditClick}
-                  onDeleteClick={onDeleteClick}
-                />
-              </div>
-            )}
-          </Tree>
+          <div className="-mt-1">
+            <Tree
+              data={treeData}
+              className="w-full"
+              indent={16}
+              rowHeight={42}
+              overscanCount={5}
+              paddingTop={0}
+              paddingBottom={20}
+              padding={20}
+              width="100%"
+              openByDefault={false}
+              disableDrop={true}
+              disableDrag={true}
+            >
+              {(props) => (
+                <div onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, props.node.id)}>
+                  <FolderItem
+                    {...props}
+                    projectId={projectId}
+                    selectedFolder={selectedFolder}
+                    locale={locale}
+                    messages={messages}
+                    openDialogForCreate={openDialogForCreate}
+                    onEditClick={onEditClick}
+                    onDeleteClick={onDeleteClick}
+                  />
+                </div>
+              )}
+            </Tree>
+          </div>
         )}
       </div>
 

@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { NavbarItem } from '@heroui/react';
 import { Home, File, Activity, Users, Settings2 } from 'lucide-react';
 import { usePathname } from '@/src/i18n/routing';
 import useGetCurrentIds from '@/utils/useGetCurrentIds';
@@ -71,15 +70,25 @@ export default function ProjectNavigation({ messages, locale }: Props) {
   ];
 
   return (
-    <>
-      {navItems.map((item) => (
-        <NavbarItem key={item.key} isActive={item.key === currentKey} className="hidden md:flex items-center">
-          <Link href={item.href} locale={locale} className="flex items-center gap-1 text-sm">
+    <nav className="hidden md:flex items-center gap-1">
+      {navItems.map((item) => {
+        const isActive = item.key === currentKey;
+        return (
+          <Link
+            key={item.key}
+            href={item.href}
+            locale={locale}
+            className={`flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded transition-colors ${
+              isActive
+                ? 'bg-gray-800 dark:bg-gray-800 text-white'
+                : 'text-gray-400 dark:text-gray-400 hover:text-gray-200 dark:hover:text-gray-200 hover:bg-gray-800/50 dark:hover:bg-gray-800/50'
+            }`}
+          >
             {item.icon}
             {item.text}
           </Link>
-        </NavbarItem>
-      ))}
-    </>
+        );
+      })}
+    </nav>
   );
 }

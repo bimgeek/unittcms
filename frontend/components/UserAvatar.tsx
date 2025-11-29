@@ -2,6 +2,7 @@ import { Avatar as HeroUiAvatar } from '@heroui/react';
 import { User } from 'lucide-react';
 import Avatar from 'boring-avatars';
 import Config from '@/config/config';
+import { AVATAR_GRADIENT_COLORS } from '@/utils/colors';
 const apiServer = Config.apiServer;
 
 type Props = {
@@ -20,7 +21,7 @@ export default function UserAvatar({ size, username, avatarPath }: Props) {
           size={size}
           name={username}
           variant="beam"
-          colors={['#0A0310', '#49007E', '#FF005B', '#FF7D10', '#FFB238']}
+          colors={AVATAR_GRADIENT_COLORS}
         />
       );
     }

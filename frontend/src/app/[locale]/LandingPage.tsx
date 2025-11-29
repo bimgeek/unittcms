@@ -57,18 +57,7 @@ export default function LandingPage({ params }: PageType) {
             >
               📋
             </span>
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                filter: 'blur(48px)',
-                zIndex: 0,
-                background: 'linear-gradient(to bottom, #ffecd2, #fcb69f)',
-              }}
-            ></div>
+            <div className="absolute top-0 left-0 w-full h-full blur-[48px] z-0 bg-gradient-landing"></div>
           </div>
         </div>
       </div>

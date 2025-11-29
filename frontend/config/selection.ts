@@ -3,11 +3,12 @@ import { RunStatusType, TestRunCaseStatusType } from '@/types/status';
 import { TestTypeType } from '@/types/testType';
 import { PriorityType } from '@/types/priority';
 import { LocaleType } from '@/types/locale';
+import { PRIORITY_COLORS, STATUS_COLORS, CHART_CATEGORICAL_PALETTE } from '@/utils/colors';
 
 const roles: GlobalRoleType[] = [{ uid: 'administrator' }, { uid: 'user' }];
 const memberRoles: MemberRoleType[] = [{ uid: 'manager' }, { uid: 'developer' }, { uid: 'reporter' }];
 
-const categoricalPalette = ['#fba91e', '#6ea56c', '#3ac6e1', '#feda2f', '#f15f47', '#244470', '#9c80bb', '#f595a6'];
+const categoricalPalette = CHART_CATEGORICAL_PALETTE;
 
 const locales: LocaleType[] = [
   { code: 'en', name: 'English' },
@@ -30,19 +31,19 @@ const testRunCaseStatus: TestRunCaseStatusType[] = [
   {
     uid: 'untested',
     color: 'primary',
-    chartColor: '#3ac6e1',
+    chartColor: STATUS_COLORS.untested,
   },
-  { uid: 'passed', color: 'success', chartColor: '#6ea56c' },
-  { uid: 'failed', color: 'danger', chartColor: '#f15f47' },
-  { uid: 'retest', color: 'warning', chartColor: '#fba91e' },
-  { uid: 'skipped', color: 'primary', chartColor: '#805aab' },
+  { uid: 'passed', color: 'success', chartColor: STATUS_COLORS.passed },
+  { uid: 'failed', color: 'danger', chartColor: STATUS_COLORS.failed },
+  { uid: 'retest', color: 'warning', chartColor: STATUS_COLORS.retest },
+  { uid: 'skipped', color: 'primary', chartColor: STATUS_COLORS.skipped },
 ];
 
 const priorities: PriorityType[] = [
-  { uid: 'critical', color: '#bb3e03', chartColor: '#bb3e03' },
-  { uid: 'high', color: '#ca6702', chartColor: '#ca6702' },
-  { uid: 'medium', color: '#ee9b00', chartColor: '#ee9b00' },
-  { uid: 'low', color: '#94d2bd', chartColor: '#94d2bd' },
+  { uid: 'critical', color: PRIORITY_COLORS.critical, chartColor: PRIORITY_COLORS.critical },
+  { uid: 'high', color: PRIORITY_COLORS.high, chartColor: PRIORITY_COLORS.high },
+  { uid: 'medium', color: PRIORITY_COLORS.medium, chartColor: PRIORITY_COLORS.medium },
+  { uid: 'low', color: PRIORITY_COLORS.low, chartColor: PRIORITY_COLORS.low },
 ];
 
 const testTypes: TestTypeType[] = [

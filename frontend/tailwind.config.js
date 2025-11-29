@@ -34,6 +34,58 @@ module.exports = {
           tertiary: '#6b7280',   // gray-500 - hints, metadata
           muted: '#4b5563',      // gray-600 - very subtle text
         },
+
+        // Folder system
+        'folder': {
+          primary: '#F7C24E',
+        },
+
+        // Priority system
+        'priority': {
+          critical: '#bb3e03',
+          high: '#ca6702',
+          medium: '#ee9b00',
+          low: '#94d2bd',
+        },
+
+        // Status system
+        'status': {
+          untested: '#3ac6e1',
+          passed: '#6ea56c',
+          failed: '#f15f47',
+          retest: '#fba91e',
+          skipped: '#805aab',
+        },
+
+        // Charts
+        'chart': {
+          categorical: {
+            1: '#fba91e',
+            2: '#6ea56c',
+            3: '#3ac6e1',
+            4: '#feda2f',
+            5: '#f15f47',
+            6: '#244470',
+            7: '#9c80bb',
+            8: '#f595a6',
+          },
+        },
+
+        // Features
+        'feature': {
+          highlight: '#52e280',
+        },
+
+        // Avatars
+        'avatar': {
+          gradient: {
+            1: '#0A0310',
+            2: '#49007E',
+            3: '#FF005B',
+            4: '#FF7D10',
+            5: '#FFB238',
+          },
+        },
       },
     },
   },

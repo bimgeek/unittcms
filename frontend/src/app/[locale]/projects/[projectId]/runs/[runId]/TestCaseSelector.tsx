@@ -34,6 +34,7 @@ import { PriorityMessages } from '@/types/priority';
 import TestCasePriority from '@/components/TestCasePriority';
 import { TestTypeMessages } from '@/types/testType';
 import { TestRunCaseStatusMessages } from '@/types/status';
+import { STATUS_ICON_COLORS } from '@/utils/colors';
 
 type Props = {
   cases: CaseType[];
@@ -105,15 +106,15 @@ export default function TestCaseSelector({
 
   const renderStatusIcon = (uid: string) => {
     if (uid === 'untested') {
-      return <Circle size={16} color="#d4d4d8" />;
+      return <Circle size={16} color={STATUS_ICON_COLORS.untested} />;
     } else if (uid === 'passed') {
-      return <CircleCheck size={16} color="#17c964" />;
+      return <CircleCheck size={16} color={STATUS_ICON_COLORS.passed} />;
     } else if (uid === 'retest') {
-      return <CircleDashed size={16} color="#f5a524" />;
+      return <CircleDashed size={16} color={STATUS_ICON_COLORS.retest} />;
     } else if (uid === 'failed') {
-      return <CircleX size={16} color="#f31260" />;
+      return <CircleX size={16} color={STATUS_ICON_COLORS.failed} />;
     } else if (uid === 'skipped') {
-      return <CircleSlash2 size={16} color="#52525b" />;
+      return <CircleSlash2 size={16} color={STATUS_ICON_COLORS.skipped} />;
     }
   };
 

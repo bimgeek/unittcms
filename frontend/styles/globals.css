@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Folder colors */
+    --color-folder-primary: #F7C24E;
+
+    /* Priority colors */
+    --color-priority-critical: #bb3e03;
+    --color-priority-high: #ca6702;
+    --color-priority-medium: #ee9b00;
+    --color-priority-low: #94d2bd;
+
+    /* Status colors */
+    --color-status-untested: #3ac6e1;
+    --color-status-passed: #6ea56c;
+    --color-status-failed: #f15f47;
+    --color-status-retest: #fba91e;
+    --color-status-skipped: #805aab;
+
+    /* Chart categorical palette */
+    --color-chart-1: #fba91e;
+    --color-chart-2: #6ea56c;
+    --color-chart-3: #3ac6e1;
+    --color-chart-4: #feda2f;
+    --color-chart-5: #f15f47;
+    --color-chart-6: #244470;
+    --color-chart-7: #9c80bb;
+    --color-chart-8: #f595a6;
+
+    /* Feature highlight */
+    --color-feature-highlight: #52e280;
+
+    /* Avatar gradients */
+    --color-avatar-1: #0A0310;
+    --color-avatar-2: #49007E;
+    --color-avatar-3: #FF005B;
+    --color-avatar-4: #FF7D10;
+    --color-avatar-5: #FFB238;
+  }
+
+  /* Dark mode overrides (if needed in future) */
+  .dark {
+    /* Add color adjustments here if dark mode requires different values */
+  }
+}
+
+@layer utilities {
+  .bg-gradient-landing {
+    background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+  }
+}

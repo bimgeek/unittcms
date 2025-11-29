@@ -48,6 +48,7 @@ import { useRouter } from '@/src/i18n/routing';
 import { testRunStatus } from '@/config/selection';
 import { RunType, RunStatusCountType, RunMessages } from '@/types/run';
 import { CaseType } from '@/types/case';
+import { FOLDER_COLORS } from '@/utils/colors';
 import { TreeNodeData } from '@/types/folder';
 import { TokenContext } from '@/utils/TokenProvider';
 import { useFormGuard } from '@/utils/formGuard';
@@ -414,14 +415,14 @@ export default function RunEditor({
                         onPress={() => node.toggle()}
                       >
                         {node.isOpen ? (
-                          <ChevronDown size={20} color="#F7C24E" />
+                          <ChevronDown size={20} color={FOLDER_COLORS.primary} />
                         ) : (
-                          <ChevronRight size={20} color="#F7C24E" />
+                          <ChevronRight size={20} color={FOLDER_COLORS.primary} />
                         )}
                       </Button>
                     ) : null
                   }
-                  icon={<Folder size={20} color="#F7C24E" fill="#F7C24E" />}
+                  icon={<Folder size={20} color={FOLDER_COLORS.primary} fill={FOLDER_COLORS.primary} />}
                   label={node.data.name}
                 />
               )}

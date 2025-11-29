@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardBody, Avatar } from '@heroui/react';
 import { Scale, Folder, Check, Globe } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { FEATURE_COLORS } from '@/utils/colors';
 
 export default function MainTitle() {
   const t = useTranslations('Index');
@@ -9,22 +10,22 @@ export default function MainTitle() {
     {
       title: t('oss_title'),
       detail: t('oss_detail'),
-      icon: <Scale size={24} color="#52e280" />,
+      icon: <Scale size={24} color={FEATURE_COLORS.highlight} />,
     },
     {
       title: t('organize_title'),
       detail: t('organize_detail'),
-      icon: <Folder size={24} color="#52e280" />,
+      icon: <Folder size={24} color={FEATURE_COLORS.highlight} />,
     },
     {
       title: t('usability_title'),
       detail: t('usability_detail'),
-      icon: <Check size={24} color="#52e280" />,
+      icon: <Check size={24} color={FEATURE_COLORS.highlight} />,
     },
     {
       title: t('universal_title'),
       detail: t('universal_detail'),
-      icon: <Globe size={24} color="#52e280" />,
+      icon: <Globe size={24} color={FEATURE_COLORS.highlight} />,
     },
   ];
 

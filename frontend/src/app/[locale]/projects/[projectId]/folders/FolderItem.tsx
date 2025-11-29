@@ -9,6 +9,7 @@ import { FolderType, FoldersMessages, TreeNodeData } from '@/types/folder';
 import { useRouter } from '@/src/i18n/routing';
 import { TokenContext } from '@/utils/TokenProvider';
 import TreeItem from '@/components/TreeItem';
+import { FOLDER_COLORS } from '@/utils/colors';
 
 interface FolderItemProps {
   node: NodeApi<TreeNodeData>;
@@ -46,7 +47,7 @@ export default function FolderItem({
         isIconOnly
         onPress={() => node.toggle()}
       >
-        {node.isOpen ? <ChevronDown size={20} color="#F7C24E" /> : <ChevronRight size={20} color="#F7C24E" />}
+        {node.isOpen ? <ChevronDown size={20} color={FOLDER_COLORS.primary} /> : <ChevronRight size={20} color={FOLDER_COLORS.primary} />}
       </Button>
     ) : null;
 
@@ -84,7 +85,7 @@ export default function FolderItem({
       isSelected={isSelected}
       onClick={() => handleClick()}
       toggleButton={toggleButton}
-      icon={<Folder size={20} color="#F7C24E" className="flex-shrink-0" />}
+      icon={<Folder size={20} color={FOLDER_COLORS.primary} className="flex-shrink-0" />}
       label={node.data.name}
       actions={actions}
     />

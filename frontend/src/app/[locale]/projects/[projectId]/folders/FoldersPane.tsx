@@ -134,7 +134,7 @@ export default function FoldersPane({ projectId, messages, locale }: Props) {
       <div className="w-56 min-h-[calc(100vh-64px)] border-r-1 dark:border-app-border-primary">
         <div className="mx-1">
           <button
-            className="w-full py-1 px-2 flex items-center gap-2 rounded-md cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-600 text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-1 px-2 flex items-center gap-2 rounded-md cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-600 text-neutral-600 dark:text-app-text-secondary hover:text-neutral-900 dark:hover:text-app-text-primary text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={!context.isProjectDeveloper(Number(projectId))}
             onClick={() => openDialogForCreate()}
           >

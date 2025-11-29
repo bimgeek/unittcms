@@ -22,16 +22,12 @@ export default function TreeItem({
   actions,
   className,
 }: TreeItemProps) {
-  const baseClass = '';
-  const selectedClass = `${baseClass} bg-neutral-200 dark:bg-neutral-700 dark:hover:bg-neutral-600 hover:bg-neutral-300`;
-
   return (
     <div className="mx-1">
       <div
         style={style}
         className={cn(
           'group relative w-full py-1 pr-2 flex items-center rounded-md cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-600',
-          isSelected ? selectedClass : baseClass,
           className
         )}
         onClick={onClick}

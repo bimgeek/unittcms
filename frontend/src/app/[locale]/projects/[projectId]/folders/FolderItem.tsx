@@ -85,7 +85,7 @@ export default function FolderItem({
       isSelected={isSelected}
       onClick={() => handleClick()}
       toggleButton={toggleButton}
-      icon={<Folder size={16} color={FOLDER_COLORS.primary} className="flex-shrink-0" />}
+      icon={<Folder size={16} color={FOLDER_COLORS.primary} fill={isSelected ? FOLDER_COLORS.primary : undefined} className="flex-shrink-0" />}
       label={node.data.name}
       actions={actions}
     />

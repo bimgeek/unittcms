@@ -30,7 +30,7 @@ export default function TreeItem({
       <div
         style={style}
         className={cn(
-          'w-full py-1 pr-2 flex items-center rounded-md cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-600',
+          'group w-full py-1 pr-2 flex items-center rounded-md cursor-pointer transition-colors hover:bg-neutral-100 dark:hover:bg-neutral-600',
           isSelected ? selectedClass : baseClass,
           className
         )}
@@ -39,7 +39,7 @@ export default function TreeItem({
         {toggleButton || <div className="ml-2" />}
         {icon}
         <span className="truncate ml-1.5">{label}</span>
-        {actions && <div className="ml-auto flex items-center">{actions}</div>}
+        {actions && <div className="ml-auto flex items-center opacity-0 group-hover:opacity-100 transition-opacity">{actions}</div>}
       </div>
     </div>
   );

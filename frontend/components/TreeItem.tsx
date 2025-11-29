@@ -38,7 +38,7 @@ export default function TreeItem({
       >
         {toggleButton || <div className="ml-2" />}
         {icon}
-        <span className="truncate ml-1.5 flex-1">{label}</span>
+        <span className="truncate ml-1.5 flex-1 text-sm font-medium">{label}</span>
         {actions && <div className="ml-auto hidden group-hover:flex items-center">{actions}</div>}
       </div>
     </div>

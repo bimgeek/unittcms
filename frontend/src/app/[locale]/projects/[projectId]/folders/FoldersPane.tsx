@@ -137,7 +137,7 @@ export default function FoldersPane({ projectId, messages, locale }: Props) {
           startContent={<Plus size={16} />}
           size="sm"
           variant="bordered"
-          className="m-2"
+          className="m-2 text-sm font-medium"
           isDisabled={!context.isProjectDeveloper(Number(projectId))}
           onPress={() => openDialogForCreate()}
         >

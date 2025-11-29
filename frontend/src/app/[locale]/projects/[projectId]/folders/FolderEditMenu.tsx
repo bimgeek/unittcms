@@ -25,8 +25,8 @@ export default function FolderEditMenu({ folder, isDisabled, onEditClick, onDele
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button isIconOnly size="sm" className="bg-transparent rounded-full">
-          <MoreVertical size={16} />
+        <Button isIconOnly size="sm" className="bg-transparent rounded-full h-5 w-5 min-w-5">
+          <MoreVertical size={14} />
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions" disabledKeys={disabledKeys}>

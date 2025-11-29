@@ -56,11 +56,11 @@ export default function FolderItem({
       <Button
         size="sm"
         isIconOnly
-        className="bg-transparent rounded-full"
+        className="bg-transparent rounded-full h-5 w-5 min-w-5"
         isDisabled={!context.isProjectDeveloper(Number(projectId))}
         onPress={() => openDialogForCreate(node.data.folderData.id)}
       >
-        <Plus size={16} />
+        <Plus size={14} />
       </Button>
       <FolderEditMenu
         folder={node.data.folderData}

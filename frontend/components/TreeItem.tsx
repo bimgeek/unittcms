@@ -38,8 +38,8 @@ export default function TreeItem({
       >
         {toggleButton || <div className="ml-2" />}
         {icon}
-        <span className="truncate ml-1.5">{label}</span>
-        {actions && <div className="ml-auto flex items-center opacity-0 group-hover:opacity-100 transition-opacity">{actions}</div>}
+        <span className="truncate ml-1.5 flex-1">{label}</span>
+        {actions && <div className="ml-auto hidden group-hover:flex items-center">{actions}</div>}
       </div>
     </div>
   );

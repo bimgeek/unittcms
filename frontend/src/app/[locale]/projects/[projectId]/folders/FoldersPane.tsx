@@ -132,7 +132,7 @@ export default function FoldersPane({ projectId, messages, locale }: Props) {
 
   return (
     <>
-      <div className="w-80 min-h-[calc(100vh-64px)] border-r-1 dark:border-app-border-primary">
+      <div className="w-56 min-h-[calc(100vh-64px)] border-r-1 dark:border-app-border-primary">
         <Button
           startContent={<Plus size={16} />}
           size="sm"

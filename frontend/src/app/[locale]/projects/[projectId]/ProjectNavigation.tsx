@@ -80,8 +80,8 @@ export default function ProjectNavigation({ messages, locale }: Props) {
             locale={locale}
             className={`flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded transition-colors ${
               isActive
-                ? 'bg-gray-800 dark:bg-gray-800 text-white'
-                : 'text-gray-400 dark:text-gray-400 hover:text-gray-200 dark:hover:text-gray-200 hover:bg-gray-800/50 dark:hover:bg-gray-800/50'
+                ? 'bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-white'
+                : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-800/50'
             }`}
           >
             {item.icon}

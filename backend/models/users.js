@@ -22,6 +22,14 @@ function defineUser(sequelize, DataTypes) {
       avatarPath: {
         type: DataTypes.STRING,
       },
+      locale: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: 'en',
+        validate: {
+          isIn: [['en', 'ja', 'pt-BR']],
+        },
+      },
     },
     { underscored: true }
   );

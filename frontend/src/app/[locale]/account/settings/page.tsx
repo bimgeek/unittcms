@@ -29,6 +29,10 @@ export default function Page({ params }: PageType) {
     invalidPassword: t('invalid_password'),
     passwordNotMatch: t('password_not_match'),
     usernameEmpty: t('username_empty'),
+    changeLanguage: t('change_language'),
+    selectLanguage: t('select_language'),
+    languageUpdated: t('language_updated'),
+    update: t('update'),
   };
 
   return <ProfileSettingsPage messages={messages} locale={params.locale as LocaleCodeType} />;

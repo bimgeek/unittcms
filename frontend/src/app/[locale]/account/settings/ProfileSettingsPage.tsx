@@ -1,11 +1,13 @@
 'use client';
 import { useState, useContext, useRef } from 'react';
-import { Button, Input, Card, CardHeader, CardBody, addToast, CardFooter } from '@heroui/react';
+import { useRouter } from '@/src/i18n/routing';
+import { Button, Input, Card, CardHeader, CardBody, addToast, CardFooter, Select, SelectItem } from '@heroui/react';
 import { TokenContext } from '@/utils/TokenProvider';
-import { updateUsername, updatePassword, uploadAvatar, deleteAvatar } from '@/utils/usersControl';
+import { updateUsername, updatePassword, uploadAvatar, deleteAvatar, updateLocale } from '@/utils/usersControl';
 import { LocaleCodeType } from '@/types/locale';
 import { logError } from '@/utils/errorHandler';
 import UserAvatar from '@/components/UserAvatar';
+import { locales } from '@/config/selection';
 
 type ProfileSettingsPageMessages = {
   profileSettings: string;
@@ -31,6 +33,10 @@ type ProfileSettingsPageMessages = {
   invalidPassword: string;
   passwordNotMatch: string;
   usernameEmpty: string;
+  changeLanguage: string;
+  selectLanguage: string;
+  languageUpdated: string;
+  update: string;
 };
 
 type Props = {
@@ -38,8 +44,9 @@ type Props = {
   locale: LocaleCodeType;
 };
 
-export default function ProfileSettingsPage({ messages }: Props) {
+export default function ProfileSettingsPage({ messages, locale }: Props) {
   const context = useContext(TokenContext);
+  const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [username, setUsername] = useState('');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -48,6 +55,8 @@ export default function ProfileSettingsPage({ messages }: Props) {
   const [isUpdatingUsername, setIsUpdatingUsername] = useState(false);
   const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
   const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
+  const [selectedLocale, setSelectedLocale] = useState(context.token?.user?.locale || locale);
+  const [isLanguageUpdating, setIsLanguageUpdating] = useState(false);
 
   const handleUsernameUpdate = async () => {
     if (!username.trim()) {
@@ -235,6 +244,42 @@ export default function ProfileSettingsPage({ messages }: Props) {
     }
   };
 
+  const handleLanguageUpdate = async () => {
+    if (!context.isSignedIn() || !selectedLocale) return;
+
+    setIsLanguageUpdating(true);
+    try {
+      const result = await updateLocale(context.token.access_token, selectedLocale);
+      if (result && result.user) {
+        // Update token with new user data
+        const newToken = {
+          ...context.token,
+          user: result.user,
+        };
+        context.setToken(newToken);
+        context.storeTokenToLocalStorage(newToken);
+
+        addToast({
+          title: 'Success',
+          color: 'success',
+          description: messages.languageUpdated,
+        });
+
+        // Redirect to new locale
+        router.push('/account/settings', { locale: selectedLocale });
+      }
+    } catch (error) {
+      logError('Error updating language:', error);
+      addToast({
+        title: 'Error',
+        color: 'danger',
+        description: messages.updateError,
+      });
+    } finally {
+      setIsLanguageUpdating(false);
+    }
+  };
+
   if (!context.isSignedIn()) {
     return null;
   }
@@ -375,6 +420,39 @@ export default function ProfileSettingsPage({ messages }: Props) {
           )}
           <Button size="sm" color="primary" onPress={() => fileInputRef.current?.click()} isLoading={isUploadingAvatar}>
             {messages.uploadAvatar}
+          </Button>
+        </CardFooter>
+      </Card>
+
+      {/* Change Language */}
+      <Card className="mb-6">
+        <CardHeader>
+          <h2 className="text-large font-semibold">{messages.changeLanguage}</h2>
+        </CardHeader>
+        <CardBody>
+          <Select
+            size="sm"
+            label={messages.selectLanguage}
+            selectedKeys={[selectedLocale]}
+            onChange={(e) => setSelectedLocale(e.target.value)}
+            className="max-w-xs"
+          >
+            {locales.map((localeOption) => (
+              <SelectItem key={localeOption.code} value={localeOption.code}>
+                {localeOption.name}
+              </SelectItem>
+            ))}
+          </Select>
+        </CardBody>
+        <CardFooter className="flex justify-end">
+          <Button
+            size="sm"
+            color="primary"
+            onPress={handleLanguageUpdate}
+            isLoading={isLanguageUpdating}
+            isDisabled={selectedLocale === (context.token?.user?.locale || locale)}
+          >
+            {messages.update}
           </Button>
         </CardFooter>
       </Card>

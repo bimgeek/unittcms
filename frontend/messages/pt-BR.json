@@ -133,7 +133,12 @@
     "max_file_size_5mb": "Tamanho máximo do arquivo: 5MB",
     "only_images_allowed": "Apenas arquivos de imagem são permitidos",
     "current_password_incorrect": "A senha atual está incorreta",
-    "update_error": "Falha na atualização"
+    "update_error": "Falha na atualização",
+    "change_language": "Alterar Idioma",
+    "current_language": "Idioma Atual",
+    "select_language": "Selecionar Idioma",
+    "language_updated": "Idioma atualizado com sucesso",
+    "update": "Atualizar"
   },
   "Health": {
     "health_check": "Verificação de Saúde",

@@ -121,12 +121,19 @@ const TokenProvider = ({ toastMessages, locale, children }: TokenProps) => {
     if (tokenString) {
       const restoredToken = JSON.parse(tokenString);
       setToken(restoredToken);
+
+      // If user has a saved locale preference different from current URL
+      if (restoredToken.user?.locale && restoredToken.user.locale !== locale) {
+        // Redirect to user's preferred locale
+        router.push(pathname, { locale: restoredToken.user.locale });
+      }
     }
     setHasRestoreFinished(true);
   };
 
   useEffect(() => {
     restoreTokenFromLocalStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

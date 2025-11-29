@@ -8,13 +8,15 @@ export default function (sequelize) {
   const { verifySignedIn } = authMiddleware(sequelize);
   const User = defineUser(sequelize, DataTypes);
 
-  router.put('/username', verifySignedIn, async (req, res) => {
+  router.put('/locale', verifySignedIn, async (req, res) => {
     try {
       const userId = req.userId;
-      const { username } = req.body;
+      const { locale } = req.body;
 
-      if (!username || username.trim().length === 0) {
-        return res.status(400).send('Username is required');
+      // Validate locale
+      const validLocales = ['en', 'ja', 'pt-BR'];
+      if (!locale || !validLocales.includes(locale)) {
+        return res.status(400).send('Invalid locale');
       }
 
       const user = await User.findByPk(userId);
@@ -22,7 +24,7 @@ export default function (sequelize) {
         return res.status(404).send('User not found');
       }
 
-      await user.update({ username: username.trim() });
+      await user.update({ locale });
 
       // Return updated user without password
       const updatedUser = await User.findByPk(userId, {

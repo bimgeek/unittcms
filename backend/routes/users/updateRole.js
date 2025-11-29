@@ -47,7 +47,17 @@ export default function (sequelize) {
         role: newRole,
       });
 
-      res.json({ user: targetUser });
+      // Return user without password
+      const userResponse = {
+        id: targetUser.id,
+        email: targetUser.email,
+        username: targetUser.username,
+        role: targetUser.role,
+        avatarPath: targetUser.avatarPath,
+        locale: targetUser.locale || 'en',
+      };
+
+      res.json({ user: userResponse });
     } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');

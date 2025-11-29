@@ -33,8 +33,17 @@ export default function (sequelize) {
       });
       const expiresAt = Date.now() + 3600 * 1000 * 24; // expire date(ms)
 
-      user.password = undefined;
-      res.status(200).json({ access_token: accessToken, expires_at: expiresAt, user });
+      // Return user without password
+      const userResponse = {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        role: user.role,
+        avatarPath: user.avatarPath,
+        locale: user.locale || 'en',
+      };
+
+      res.status(200).json({ access_token: accessToken, expires_at: expiresAt, user: userResponse });
     } catch (error) {
       console.error(error);
       res.status(500).send('Sign up failed');

@@ -1,6 +1,5 @@
 'use client';
 import { useState, useContext } from 'react';
-import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import {
   Navbar,
@@ -13,12 +12,10 @@ import {
   ListboxItem,
   Listbox,
 } from '@heroui/react';
-import { ArrowRightFromLine, ArrowRightToLine, File, Globe, MoveUpRight, PenTool, Settings } from 'lucide-react';
+import { ArrowRightFromLine, ArrowRightToLine, File, MoveUpRight, PenTool, Settings } from 'lucide-react';
 import DropdownAccount from './DropdownAccount';
-import DropdownLanguage from './DropdownLanguage';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { GithubIcon } from '@/components/icons';
-import { locales } from '@/config/selection';
 import { Link, useRouter } from '@/src/i18n/routing';
 import { TokenContext } from '@/utils/TokenProvider';
 import UserAvatar from '@/components/UserAvatar';
@@ -36,7 +33,6 @@ type NabbarMenuMessages = {
   signIn: string;
   signOut: string;
   links: string;
-  languages: string;
 };
 
 type Props = {
@@ -75,18 +71,6 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
   }
 
   const router = useRouter();
-  const pathname = usePathname();
-  async function changeLocale(nextLocale: string) {
-    let newPathname;
-    if (pathname.length < 4) {
-      // when root path
-      router.push('/', { locale: nextLocale });
-    } else {
-      // when not root path, trim first "/en" from pathname = "/en/projects"
-      newPathname = pathname.slice(locale.length + 1);
-      router.push(newPathname, { locale: nextLocale });
-    }
-  }
 
   return (
     <Navbar isMenuOpen={isMenuOpen} maxWidth="full" position="sticky" className="bg-inherit">
@@ -136,7 +120,6 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
         <ThemeSwitch />
         <div className="hidden md:block">
           <DropdownAccount messages={messages} locale={locale} onItemPress={() => {}} />
-          <DropdownLanguage locale={locale} onChangeLocale={changeLocale} />
         </div>
         <NavbarMenuToggle className="md:hidden" onChange={() => setIsMenuOpen(!isMenuOpen)} />
       </NavbarContent>
@@ -250,25 +233,6 @@ export default function HeaderNavbarMenu({ messages, locale }: Props) {
               />
             </Listbox>
           )}
-          <p className="font-bold">{messages.languages}</p>
-          <Listbox
-            aria-label="Language links"
-            itemClasses={{
-              base: 'h-10 text-large',
-            }}
-          >
-            {locales.map((entry) => (
-              <ListboxItem
-                key={entry.code}
-                startContent={<Globe size={16} />}
-                title={entry.name}
-                onPress={() => {
-                  changeLocale(entry.code);
-                  setIsMenuOpen(false);
-                }}
-              />
-            ))}
-          </Listbox>
         </div>
       </NavbarMenu>
     </Navbar>
